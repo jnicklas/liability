@@ -1,0 +1,3 @@
+module GreatAss
+  # Your code goes here...
+end
