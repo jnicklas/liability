@@ -1,3 +1,5 @@
 module GreatAss
-  # Your code goes here...
+  autoload :Package, 'great_ass/package'
+  autoload :File, 'great_ass/file'
+  autoload :Bundle, 'great_ass/bundle'
 end

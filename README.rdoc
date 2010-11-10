@@ -1,0 +1,31 @@
+= GreatAss
+
+Is an asset packaging library for Rack applications. It works like this: first, set up your assets:
+
+    require 'great_ass'
+
+    GreatAss.setup do
+      package :js do
+        pre_process :coffee_script
+        post_process :jsmin
+        source "../app/scripts"
+        files "jquery.js", "jquery.ui.js", "application.coffee"
+      end
+
+      package :css do
+        pre_process :sass
+        # custom processing with a proc
+        post_process { |file| "/* Copyright 2010 Elabs */\n" + file.read }
+        glob "../app/stylesheets/*{.css,.sass,.scss}"
+      end
+    end
+
+you can then use it as rack middleware in your application:
+
+    use GreatAss
+
+you can get the URL to any package by doing:
+
+    GreatAss.package_url(:js)
+
+this will give you a URL to the package. Boom done.

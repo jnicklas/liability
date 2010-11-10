@@ -6,11 +6,11 @@ Gem::Specification.new do |s|
   s.name        = "great_ass"
   s.version     = GreatAss::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["TODO: Write your name"]
-  s.email       = ["TODO: Write your email address"]
-  s.homepage    = "http://rubygems.org/gems/great_ass"
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.authors     = ["Jonas Nicklas"]
+  s.email       = ["jonas.nicklas@gmail.com"]
+  s.homepage    = "http://github.com/jnicklas/great_ass"
+  s.summary     = %q{Seriously well rounded asset packagement}
+  s.description = %q{Show off your assets in style}
 
   s.rubyforge_project = "great_ass"
 
