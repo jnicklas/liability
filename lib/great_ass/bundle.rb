@@ -17,6 +17,5 @@ module GreatAss
         GreatAss::Bundle.new(package, file_objects, post_processor.call(bundle))
       end.read
     end
-
   end
 end

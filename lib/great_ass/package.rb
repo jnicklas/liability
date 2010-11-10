@@ -2,10 +2,11 @@ module GreatAss
   class Package
     attr_reader :name, :pre_processors, :post_processors
 
-    def initialize(name)
+    def initialize(name, &block)
       @name = name
       @pre_processors = []
       @post_processors = []
+      instance_eval(&block) if block
     end
 
     def source(new_source=nil)
