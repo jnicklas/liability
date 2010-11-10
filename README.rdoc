@@ -4,7 +4,7 @@ Is an asset packaging library for Rack applications. It works like this: first, 
 
     require 'great_ass'
 
-    GreatAss.setup do
+    GreatAss.configure do
       package :js do
         pre_process :coffee_script
         post_process :jsmin

@@ -12,5 +12,9 @@ module GreatAss
     def packages
       @packages ||= {}
     end
+
+    def configure(&block)
+      instance_eval(&block)
+    end
   end
 end
