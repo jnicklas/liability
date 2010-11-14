@@ -1,10 +1,10 @@
-= GreatAss
+= Liability
 
 Is an asset packaging library for Rack applications. It works like this: first, set up your assets:
 
-    require 'great_ass'
+    require 'liability'
 
-    GreatAss.configure do
+    Liability.configure do
       package :js do
         pre_process :coffee_script
         post_process :jsmin
@@ -22,10 +22,10 @@ Is an asset packaging library for Rack applications. It works like this: first, 
 
 you can then use it as rack middleware in your application:
 
-    use GreatAss
+    use Liability
 
 you can get the URL to any package by doing:
 
-    GreatAss.package_url(:js)
+    Liability.package_url(:js)
 
 this will give you a URL to the package. Boom done.

@@ -1,4 +1,4 @@
-module GreatAss
+module Liability
   class File
     attr_reader :name, :package
 
@@ -18,7 +18,7 @@ module GreatAss
 
     def generate
       package.pre_processors.inject(self) do |file, pre_processor|
-        GreatAss::File.new(package, name, pre_processor.call(file))
+        Liability::File.new(package, name, pre_processor.call(file))
       end.read
     end
   end

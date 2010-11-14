@@ -1,4 +1,4 @@
-module GreatAss
+module Liability
   class Bundle
     attr_reader :package, :file_objects
 
@@ -14,7 +14,7 @@ module GreatAss
 
     def generate
       package.post_processors.inject(self) do |bundle, post_processor|
-        GreatAss::Bundle.new(package, file_objects, post_processor.call(bundle))
+        Liability::Bundle.new(package, file_objects, post_processor.call(bundle))
       end.read
     end
   end

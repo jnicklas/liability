@@ -1,4 +1,4 @@
-module GreatAss
+module Liability
   class Package
     attr_reader :name, :pre_processors, :post_processors
 
@@ -32,13 +32,13 @@ module GreatAss
     end
 
     def generate
-      GreatAss::Bundle.new(self, file_objects).generate
+      Liability::Bundle.new(self, file_objects).generate
     end
 
   protected
 
     def file_objects
-      files.map { |file| GreatAss::File.new(self, file) }
+      files.map { |file| Liability::File.new(self, file) }
     end
   end
 end

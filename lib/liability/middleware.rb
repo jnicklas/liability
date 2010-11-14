@@ -1,4 +1,4 @@
-module GreatAss
+module Liability
   class Middleware
 
   end

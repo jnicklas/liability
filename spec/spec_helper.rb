@@ -1,1 +1,1 @@
-require 'great_ass'
+require 'liability'

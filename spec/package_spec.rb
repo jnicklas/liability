@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe GreatAss::Package do
-  let(:package) { GreatAss::Package.new('application.js') }
+describe Liability::Package do
+  let(:package) { Liability::Package.new('application.js') }
   let(:path) { File.expand_path('assets', File.dirname(__FILE__)) }
 
   it "evaluates the block given to the constructor" do
-    package = GreatAss::Package.new('application.js') { source('foo/bar') }
+    package = Liability::Package.new('application.js') { source('foo/bar') }
     package.source.should == 'foo/bar'
   end
 
