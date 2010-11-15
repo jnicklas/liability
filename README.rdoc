@@ -1,18 +1,19 @@
 = Liability
 
-Is an asset packaging library for Rack applications. It works like this: first, set up your assets:
+Is an asset packaging library for Rack applications. It works like this: first,
+set up your assets:
 
     require 'liability'
 
     Liability.configure do
-      package :js do
+      package "app.js" do
         pre_process :coffee_script
         post_process :jsmin
         source "../app/scripts"
         files "jquery.js", "jquery.ui.js", "application.coffee"
       end
 
-      package :css do
+      package "app.css" do
         pre_process :sass
         # custom processing with a proc
         post_process { |file| "/* Copyright 2010 Elabs */\n" + file.read }
@@ -24,11 +25,22 @@ you can then use it as rack middleware in your application:
 
     use Liability
 
-you can get the URL to any package by doing:
+Packages are now accessible at `/liability/:package_name`, for example
+`/liability/app.js`. You can get the URL to any package by doing:
 
-    Liability.package_url(:js)
+    Liability.package_url("app.js")
 
-this will give you a URL to the package. Boom done.
+This is the preferred way, since it will add a timestamp to the URL so cache
+expiry happens.
+
+== Rails 3
+
+Just add this to your Gemfile:
+
+    gem "liability", :require => "liability/rails"
+
+This will add the middleware and also load the file `config/liability.rb`, use
+that file to setup your packages.
 
 == License:
 
@@ -36,21 +48,20 @@ this will give you a URL to the package. Boom done.
 
 Copyright (c) 2010 Jonas Nicklas
 
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the 'Software'), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
