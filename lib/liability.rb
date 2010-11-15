@@ -16,5 +16,21 @@ module Liability
     def configure(&block)
       instance_eval(&block)
     end
+
+    def pre_processors
+      @pre_processors ||= {}
+    end
+
+    def post_processors
+      @pre_processors ||= {}
+    end
+
+    def pre_processor(name, &block)
+      pre_processors[name] = block
+    end
+
+    def post_processor(name, &block)
+      post_processors[name] = block
+    end
   end
 end

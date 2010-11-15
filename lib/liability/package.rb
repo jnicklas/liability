@@ -23,11 +23,13 @@ module Liability
       file_objects.map { |f| f.path }
     end
 
-    def pre_processor(&block)
+    def pre_processor(name=nil, &block)
+      block = Liability.pre_processors[name] if name
       @pre_processors.push(block)
     end
 
-    def post_processor(&block)
+    def post_processor(name=nil, &block)
+      block = Liability.post_processors[name] if name
       @post_processors.push(block)
     end
 

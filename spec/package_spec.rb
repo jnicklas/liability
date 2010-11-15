@@ -53,6 +53,14 @@ describe Liability::Package do
       package.generate.should == "elifOOF\nraBAnI"
     end
 
+    it "uses a previously added processor" do
+      Liability.pre_processor(:reverse) { |file| file.read.reverse }
+      package.source path
+      package.files %w(foo.js bar.js)
+      package.pre_processor :reverse
+      package.generate.should == "elifOOF\nraBAnI"
+    end
+
     it "applies multiple processors" do
       package.source path
       package.files %w(foo.js bar.js)
@@ -67,6 +75,14 @@ describe Liability::Package do
       package.source path
       package.files %w(foo.js bar.js)
       package.post_processor { |bundle| bundle.read.reverse }
+      package.generate.should == "raBAnI\nelifOOF"
+    end
+
+    it "uses a previously added processor" do
+      Liability.post_processor(:reverse) { |bundle| bundle.read.reverse }
+      package.source path
+      package.files %w(foo.js bar.js)
+      package.post_processor :reverse
       package.generate.should == "raBAnI\nelifOOF"
     end
 
